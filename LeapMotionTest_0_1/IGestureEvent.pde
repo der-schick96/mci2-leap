@@ -1,4 +1,7 @@
+import java.time.Instant;
 
 public interface IGestureEvent {
-  public Collection<Hand> getHands();
+  public ArrayList<Hand> getHands();
+  public Instant getTimestamp();
+  public PVector getPosition();
 }

@@ -1,5 +1,6 @@
 
 public class HandPublisher extends Observable implements Runnable {
+  
   private LeapMotion lm;
   private ArrayList<IGesture> gestures = new ArrayList<IGesture>();
   public HandPublisher(LeapMotion lm) {
@@ -14,17 +15,16 @@ public class HandPublisher extends Observable implements Runnable {
   public void run() {
     int i = 0;
     while(true) {
-      Collection<Hand> hands;
+      ArrayList<Hand> hands;
       hands = leap.getHands();
       for (IGesture gesture : gestures) {
-        System.out.println("Checking gesture " + i);
         if(gesture.isActive(hands)) {
           setChanged();
           notifyObservers(gesture.getEvent(hands));
         }
       }
       try {
-        Thread.sleep(1000);
+        Thread.sleep(10);
       } catch(Exception e) {
         e.printStackTrace();
       }

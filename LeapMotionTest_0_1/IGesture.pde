@@ -1,5 +1,5 @@
 
 public interface IGesture {
-  public boolean isActive(Collection<Hand> hands);
-  public IGestureEvent getEvent(Collection<Hand> hands);
+  public boolean isActive(ArrayList<Hand> hands);
+  public IGestureEvent getEvent(ArrayList<Hand> hands);
 }
