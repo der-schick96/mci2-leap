@@ -1,5 +1,5 @@
 
-public class HandPublisher extends Observable implements Runnable {
+class HandPublisher extends Observable implements Runnable {
   
   private LeapMotion lm;
   private ArrayList<IGesture> gestures = new ArrayList<IGesture>();

@@ -39,8 +39,8 @@ public class HandSpread implements IGesture {
     @Override
     public PVector getPosition() {
       if (getHands().size() == 2) {
-        PVector hand1pos = getHands().get(0).getIndexFinger().getRawPositionOfJointTip();
-        PVector hand2pos = getHands().get(1).getIndexFinger().getRawPositionOfJointTip();
+        PVector hand1pos = getHands().get(0).getIndexFinger().getPositionOfJointTip();
+        PVector hand2pos = getHands().get(1).getIndexFinger().getPositionOfJointTip();
         
         return new PVector((hand1pos.x + hand2pos.x)/2
                           , (hand1pos.y + hand2pos.y)/2

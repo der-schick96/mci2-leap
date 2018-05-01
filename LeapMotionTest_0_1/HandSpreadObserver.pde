@@ -22,12 +22,12 @@ public class GestureObserver implements Observer {
              hand1pos = e.getHands()
              .get(0)
              .getIndexFinger()
-             .getRawPositionOfJointTip();
+             .getPositionOfJointTip();
            } if (e.getHands().size() > 1) {
              hand2pos = e.getHands()
              .get(1)
              .getIndexFinger()
-             .getRawPositionOfJointTip();
+             .getPositionOfJointTip();
            }          
            store.put("hand1pos", hand1pos);
            store.put("hand2pos", hand2pos);
@@ -47,12 +47,12 @@ public class GestureObserver implements Observer {
              .getThumb();
              
              System.out.println(PVector.angleBetween(indexFinger.getIntermediateBone().getDirection(), thumb.getIntermediateBone().getDirection() ));
-             if (indexFinger.getRawPositionOfJointTip()  != null)
-               store.put("index-finger", indexFinger.getRawPositionOfJointTip());
+             if (indexFinger.getPositionOfJointTip()  != null)
+               store.put("index-finger", indexFinger.getPositionOfJointTip());
              else
                store.remove("index-finger");
              if (thumb.getRawPositionOfJointTip()  != null)
-                 store.put("thumb-finger", thumb.getRawPositionOfJointTip());
+                 store.put("thumb-finger", thumb.getPositionOfJointTip());
                else
                  store.remove("thumb-finger");  
            }
@@ -63,7 +63,7 @@ public class GestureObserver implements Observer {
          }
          else if (obj instanceof PointGesture.Event) {
              PointGesture.Event e = (PointGesture.Event)obj;
-             store.put("pointpos", e.getHands().get(0).getPosition());  
+             store.put("pointpos", e.getHands().get(0).getIndexFinger().getPositionOfJointTip());  
          }
        }
 }

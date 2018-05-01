@@ -9,11 +9,11 @@ public class MoveGesture implements IGesture {
       return false;
      int nOutstretchedHands = 0;
      for(Hand hand : hands) {
-       if(hand.getOutstretchedFingers().size() > 4) {
+       if(hand.getOutstretchedFingers().size() > 0) {
          nOutstretchedHands++;
        }
      }
-     return nOutstretchedHands == 1;
+     return nOutstretchedHands == 0;
   }
   
   @Override
