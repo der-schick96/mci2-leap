@@ -19,6 +19,18 @@ public class GameMap {
     return xml;
   }
   
+  public void loadFromXML(XML xml) {
+    for(XML placeXML : xml.getChildren()) {
+       places.add(new Place(
+           placeXML.getFloat("x")
+         , placeXML.getFloat("y")
+         , placeXML.getFloat("width")
+         , placeXML.getFloat("height")
+         , placeXML.getString("name"))
+       ); 
+    }
+  }
+  
   public void addPlace(Place place) {
     places.add(place); 
   }
@@ -72,6 +84,12 @@ public class Place {
   }
   
   public XML toXML() {
-    return parseXML("<Place><x>"+x+"</x><y>"+y+"</y><width>"+width+"</width><height>"+height+"</height><name>"+name+"</name></Place>");
+    XML xml =  parseXML("<Place></Place>");
+    xml.setFloat("x", x);
+    xml.setFloat("y", y);
+    xml.setFloat("width", width);
+    xml.setFloat("height", height);
+    xml.setString("name", name);
+    return xml;
   }
 }

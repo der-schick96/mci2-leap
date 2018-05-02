@@ -46,8 +46,9 @@ void setup() {
   handPublisher.addGesture(new PointGesture());
   
   gameMap = new GameMap();
-  gameMap.addPlace(new Place(100, 100, 300, 300, "test"));
-  saveXML(gameMap.toXML(), "text.xml");
+  gameMap.loadFromXML(loadXML("./test.xml"));
+  //gameMap.addPlace(new Place(100, 100, 300, 300, "test"));
+  //saveXML(gameMap.toXML(), "text.xml");
   
   img = loadImage("test.jpg");
   
