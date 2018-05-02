@@ -47,6 +47,7 @@ void setup() {
   
   gameMap = new GameMap();
   gameMap.addPlace(new Place(100, 100, 300, 300, "test"));
+  saveXML(gameMap.toXML(), "text.xml");
   
   img = loadImage("test.jpg");
   

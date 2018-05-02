@@ -12,9 +12,17 @@ public class GameMap {
     
   }*/
   
+  public XML toXML() {
+    XML xml = parseXML("<Map></Map>");
+    for(Place place : places)
+      xml.addChild(place.toXML());
+    return xml;
+  }
+  
   public void addPlace(Place place) {
     places.add(place); 
   }
+  
   
   public ArrayList<Place> getPlacesByPosition(float x, float y) {
     ArrayList<Place> ret = new ArrayList<Place>();
@@ -61,5 +69,9 @@ public class Place {
   
   public boolean contains(float x, float y) {
     return x > this.x && x < this.x + this.width && y > this.y && y < this.y+ this.height;
+  }
+  
+  public XML toXML() {
+    return parseXML("<Place><x>"+x+"</x><y>"+y+"</y><width>"+width+"</width><height>"+height+"</height><name>"+name+"</name></Place>");
   }
 }

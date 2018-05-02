@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Map>
+  <Place>
+    <x>100.0</x>
+    <y>100.0</y>
+    <width>300.0</width>
+    <height>300.0</height>
+    <name>test</name>
+  </Place>
+</Map>
