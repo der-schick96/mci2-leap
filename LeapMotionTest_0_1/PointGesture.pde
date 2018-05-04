@@ -5,11 +5,11 @@ public class PointGesture implements IGesture {
   
   @Override
   public boolean isActive(ArrayList<Hand> hands) {
-    if(hands.isEmpty())
+    if(hands.isEmpty() || hands.size() != 1)
       return false;
      int nOutstretchedFingers = 0;
      for(Hand hand : hands) {
-       if(hand.getOutstretchedFingers().size() == 1 && hand.getIndexFinger().isExtended()) {
+       if(hand.getOutstretchedFingers().size() <= 2 && hand.getIndexFinger().isExtended()) {
          nOutstretchedFingers++;
        }
      }

@@ -7,13 +7,16 @@ public class MoveGesture implements IGesture {
   public boolean isActive(ArrayList<Hand> hands) {
     if(hands.isEmpty())
       return false;
-     int nOutstretchedHands = 0;
-     for(Hand hand : hands) {
-       if(hand.getOutstretchedFingers().size() > 0) {
-         nOutstretchedHands++;
-       }
-     }
-     return nOutstretchedHands == 0;
+    for(Hand hand : hands) {
+      for(Finger finger : hand.getFingers()) {
+        if (finger.getType() == 0)
+          continue;
+        println("Winkel: " + PVector.angleBetween(finger.getDistalBone().getRawDirection(), finger.getMetacarpalBone().getRawDirection()));
+        if (PVector.angleBetween(finger.getDistalBone().getRawDirection(), finger.getMetacarpalBone().getRawDirection()) < PI*0.8 )
+          return false;
+      }    
+    }
+    return true;
   }
   
   @Override

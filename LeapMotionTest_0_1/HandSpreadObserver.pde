@@ -61,10 +61,13 @@ public class GestureObserver implements Observer {
            MoveGesture.Event e = (MoveGesture.Event)obj;
            store.put("movepos", e.getHands().get(0).getPosition());
          }
-         else if (obj instanceof PointGesture.Event) {
-             PointGesture.Event e = (PointGesture.Event)obj;
-             store.put("pointpos", e.getHands().get(0).getIndexFinger().getPositionOfJointTip());  
+         else if (obj instanceof ClickGesture.Event) {
+           println("Click!");
+         }else if (obj instanceof PointGesture.Event) {
+           PointGesture.Event e = (PointGesture.Event)obj;
+           store.put("pointpos", e.getHands().get(0).getIndexFinger().getPositionOfJointTip());  
          }
+         
        }
 }
        

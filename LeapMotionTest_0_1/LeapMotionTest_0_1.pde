@@ -46,6 +46,8 @@ void setup() {
   handPublisher.addGesture(new HandSpread());
   handPublisher.addGesture(new MoveGesture());
   handPublisher.addGesture(new PointGesture());
+  handPublisher.addGesture(new ClickGesture());
+
   
   gameMap = new GameMap();
   gameMap.loadFromXML(loadXML("./test.xml"));
@@ -125,7 +127,7 @@ void draw() {
   
   //frameRate(leap.getFrameRate() > 1 ? 25 : leap.getFrameRate());
 
-  System.out.println(1000/frameRate);
+  //System.out.println(1000/frameRate);
   
   background(204);
     
@@ -161,7 +163,7 @@ void draw() {
     movePosition = (PVector)state.get("movepos");
     if (movePosition != null) {
      
-    System.out.println(lastMoved.until(Instant.now(), ChronoUnit.MILLIS));
+    //System.out.println(lastMoved.until(Instant.now(), ChronoUnit.MILLIS));
      
     if(!lastMovePosition.equals(movePosition) && (lastMovePosition.dist(movePosition) < 100 || lastMoved.until(Instant.now(), ChronoUnit.MILLIS) < (1000/frameRate)*2)) {
       println(movePosition.dist(lastMovePosition));

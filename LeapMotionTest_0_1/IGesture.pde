@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 
 public interface IGesture {
   public boolean isActive(ArrayList<Hand> hands);
