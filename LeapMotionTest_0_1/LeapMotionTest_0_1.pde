@@ -31,8 +31,10 @@ void setup() {
   background(255);
   stroke(0x000000);
   
+  frameRate(60);
+  
   pointerXOffset = 0;
-  pointerZOffset = 0;
+  pointerZOffset = 1000;
   pointerXFactor=1;
   pointerZFactor=10;
   
@@ -83,7 +85,8 @@ void zoom(float zoomFactor) {
 }
 
 PVector translatePointerPosition(PVector pointerPosition) {
-  return new PVector((pointerPosition.x*pointerXFactor+pointerXOffset)/scale, (pointerPosition.z*pointerZFactor+pointerZOffset)/scale);
+  println(pointerPosition.z);
+  return new PVector((pointerPosition.x*pointerXFactor+pointerXOffset)/scale, ((pointerPosition.z*-1)*pointerZFactor+pointerZOffset)/scale);
 }
 
 PVector pointerToImagePosition(PVector pointerPosition) {
@@ -120,7 +123,7 @@ void drawZoomPointer(PVector centerPosition, PVector leftHandPosition, PVector r
 
 void draw() {
   
-  frameRate(leap.getFrameRate() == 0 ? 25 : leap.getFrameRate());
+  //frameRate(leap.getFrameRate() > 1 ? 25 : leap.getFrameRate());
 
   System.out.println(1000/frameRate);
   
