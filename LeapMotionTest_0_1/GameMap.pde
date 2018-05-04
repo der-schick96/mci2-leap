@@ -65,18 +65,18 @@ public class Place {
   
   @Override
   public String toString() {
-     return name; 
+    return name; 
   }
   
   public String getName() {
-     return name; 
+    return name; 
   }
   
-  public void draw(float offsetX, float offsetY, float scale) {
-     noFill();
-     stroke(0x000000);
-     rect((x + offsetX), (y + offsetY), width, height);
-     text(name, (x + offsetX), (y + offsetY + height));
+  public void draw(float offsetX, float offsetY) {
+    noFill();
+    stroke(0x000000);
+    rect((x + offsetX), (y + offsetY), width, height);
+    text(name, (x + offsetX), (y + offsetY + height));
   }
   
   public boolean contains(float x, float y) {

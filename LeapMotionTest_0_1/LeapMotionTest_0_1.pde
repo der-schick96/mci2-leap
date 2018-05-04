@@ -38,7 +38,7 @@ void setup() {
   
   
   leap = new LeapMotion(this);
-  
+    
   handPublisher = new HandPublisher(leap);
   handPublisher.addObserver(new GestureObserver(state));
   handPublisher.addGesture(new HandSpread());
@@ -86,26 +86,23 @@ PVector translatePointerPosition(PVector pointerPosition) {
   return new PVector((pointerPosition.x*pointerXFactor+pointerXOffset)/scale, (pointerPosition.z*pointerZFactor+pointerZOffset)/scale);
 }
 
-
-
 PVector pointerToImagePosition(PVector pointerPosition) {
   return translatePointerPosition(pointerPosition).sub(imgX, imgY);
 }
 
 void drawCross(float x, float y) {
-   line(x - 10/scale, y-10/scale, x + 10/scale, y + 10/scale);
-   line(x + 10/scale, y-10/scale, x - 10/scale, y + 10/scale);
+  line(x - 10/scale, y-10/scale, x + 10/scale, y + 10/scale);
+  line(x + 10/scale, y-10/scale, x - 10/scale, y + 10/scale);
 }
 
 void drawCross(PVector position) {
-   drawCross(position.x, position.y);
+  drawCross(position.x, position.y);
 }
 
 void drawPointer(PVector pointerPosition, PShape pointerShape) {
   PVector pos = translatePointerPosition(pointerPosition);
   pointerShape.scale(1/scale);
   shape(pointerShape, pos.x , pos.y);
-  
 }
 
 void drawZoomPointer(PVector centerPosition, PVector leftHandPosition, PVector rightHandPosition) {
@@ -121,11 +118,11 @@ void drawZoomPointer(PVector centerPosition, PVector leftHandPosition, PVector r
   text("x" + df.format(scale), centerPos.x, centerPos.y);
 }
 
-
-
-
 void draw() {
-  frameRate(leap.getFrameRate());
+  
+  frameRate(leap.getFrameRate() == 0 ? 25 : leap.getFrameRate());
+
+  System.out.println(1000/frameRate);
   
   background(204);
     
@@ -163,7 +160,7 @@ void draw() {
      
     System.out.println(lastMoved.until(Instant.now(), ChronoUnit.MILLIS));
      
-    if(!lastMovePosition.equals(movePosition) && (lastMovePosition.dist(movePosition) < 50 || lastMoved.until(Instant.now(), ChronoUnit.MILLIS) < 200)) {
+    if(!lastMovePosition.equals(movePosition) && (lastMovePosition.dist(movePosition) < 100 || lastMoved.until(Instant.now(), ChronoUnit.MILLIS) < (1000/frameRate)*2)) {
       println(movePosition.dist(lastMovePosition));
       if (movePosition != null ) {
         if (!lastMovePosition.equals(new PVector(0, 0, 0)) && movePosition.dist(lastMovePosition) < 300) {
@@ -193,7 +190,8 @@ void draw() {
     }
       
     PVector pointerPos = (PVector)state.get("pointpos");
-    System.out.println(pointerToImagePosition(pointerPos));
+    if (pointerPos != null)
+      System.out.println(pointerToImagePosition(pointerPos));
     PShape normalPointer = loadShape("pointer.svg");
     if (pointerPos != null) {
         fill(0xffff0000);
@@ -201,7 +199,7 @@ void draw() {
         drawPointer(pointerPos, normalPointer);
         ArrayList<Place> mapPlaces = gameMap.getPlacesByPosition(pointerToImagePosition(pointerPos));
         if (mapPlaces.size() > 0)
-          mapPlaces.get(0).draw(imgX, imgY, scale);
+          mapPlaces.get(0).draw(imgX, imgY);
         //ellipse((pointerPos.x+ pointerXOffset)/scale , (pointerPos.y + pointerZOffset)/scale, 10/scale, 10/scale);
     }
       
